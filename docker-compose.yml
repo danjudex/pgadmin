@@ -10,7 +10,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.frontend.rule: "Host: ${DOCKER_DOMAIN}"
-      traefik.frontend.entryPoints: "https"
+      traefik.frontend.entryPoints: "http,https"
     networks:
       - web
     volumes:
