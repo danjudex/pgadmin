@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    labels:
+      traefik.enable: "true"
+      traefik.frontend.rule: "Host: ${DOCKER_DOMAIN}"
+      traefik.frontend.entryPoints: "https"
+    networks:
+      - web
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    restart: unless-stopped
+
+volumes:
+  pgadmin_data: ~
+
+networks:
+  web:
+    external: true
