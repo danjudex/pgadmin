@@ -9,8 +9,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     labels:
       traefik.enable: "true"
-      traefik.frontend.rule: "Host: ${DOCKER_DOMAIN}"
-      traefik.frontend.entryPoints: "https"
+      traefik.http.routers.pgadmin.rule: "Host(`${DOCKER_DOMAIN}`)"
+      traefik.http.routers.pgadmin.entrypoints: "web, websecure"
     networks:
       - web
     volumes:
