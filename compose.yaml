@@ -1,15 +1,12 @@
-version: "3"
-
 services:
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     labels:
       - traefik.enable=true
-      - traefik.http.routers.pgadmin.rule=Host(`${APP_DOMAIN}`)
+      - traefik.http.routers.pgadmin.rule=Host(`${APP_HOST}`)
     networks:
       - web
     volumes:
